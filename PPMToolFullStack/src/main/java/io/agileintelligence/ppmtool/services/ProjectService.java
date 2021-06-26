@@ -37,4 +37,15 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
+    public void deleteProjectByIdentifier(String projectId){
+        Project project = projectRepository.findByProjectIdentifier(projectId);
+
+        if(project == null){
+            throw new ProjectIdException("Cannot locate Project with id '" + projectId + "'");
+        }
+
+        projectRepository.delete(project);
+
+    }
+
 }
